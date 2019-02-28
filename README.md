@@ -205,11 +205,7 @@ PATH	TYPE	COUNT
 ## Run test
 
 ```
-go get github.com/stretchr/testify
-```
-
-```
-go test .
+make
 ```
 
 ## Contributing
