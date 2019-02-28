@@ -30,16 +30,16 @@ var TestData1 = map[string]interface{}{
 }
 
 var ExpectedForTestData1 = map[string]int{
-	"?map[string]interface {}":       1,
-	".foo?[]interface {}":            1,
-	".foo[]?map[string]interface {}": 2,
-	".foo[].(key)?<nil>":             1,
-	".foo[].(key)?bool":              2,
-	".foo[].(key)?int":               2,
-	".foo[].(key)?float64":           1,
-	".bar?[]interface {}":            1,
-	".bar[]?map[string]interface {}": 1,
-	".bar[].(key)?string":            2,
+	"$map[string]interface {}":       1,
+	".foo$[]interface {}":            1,
+	".foo[]$map[string]interface {}": 2,
+	".foo[].(key)$<nil>":             1,
+	".foo[].(key)$bool":              2,
+	".foo[].(key)$int":               2,
+	".foo[].(key)$float64":           1,
+	".bar$[]interface {}":            1,
+	".bar[]$map[string]interface {}": 1,
+	".bar[].(key)$string":            2,
 }
 
 func NewSummarizer1() *Summarizer {
@@ -61,8 +61,8 @@ func TestSummarizerTestData1(t *testing.T) {
 func TestSummarizerTestData1ViaJSON(t *testing.T) {
 	// The number from JSON  is float64 instead of int
 	expected := ExpectedForTestData1
-	expected[".foo[].(key)?float64"] += expected[".foo[].(key)?int"]
-	delete(expected, ".foo[].(key)?int")
+	expected[".foo[].(key)$float64"] += expected[".foo[].(key)$int"]
+	delete(expected, ".foo[].(key)$int")
 
 	b, err := json.Marshal(TestData1)
 	if assert.NoError(t, err) {

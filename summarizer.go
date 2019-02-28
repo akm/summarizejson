@@ -24,7 +24,7 @@ func (s *Summarizer) Load(obj interface{}) {
 }
 
 func (s *Summarizer) Walk(path string, obj interface{}) {
-	s.Result[fmt.Sprintf("%s?%T", path, obj)] += 1
+	s.Result[fmt.Sprintf("%s$%T", path, obj)] += 1
 	switch val := obj.(type) {
 	case map[string]interface{}:
 		for k, v := range val {
