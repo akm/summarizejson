@@ -53,6 +53,13 @@ PATH	TYPE	COUNT
 (ROOT)[].value	string	213296
 ```
 
+### TYPE in Golang
+
+| type name | meaning |
+|----------|----------|
+| `interface {}` | Any type of data |
+| `map[string]interface {}` | type of object which has named attributes |
+
 ### For dynamic attribute names like ID
 
 ```
