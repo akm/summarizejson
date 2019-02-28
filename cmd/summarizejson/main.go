@@ -99,7 +99,7 @@ func main() {
 		i := 0
 		for k := range r {
 			keys[i] = k
-			i += 1
+			i++
 		}
 		sort.Strings(keys)
 
