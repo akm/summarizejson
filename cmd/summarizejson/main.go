@@ -17,7 +17,7 @@ var RootExp = flag.String("root-exp", "", "Expression for root object")
 var PathSeparator = flag.String("path-separator", ".", "Separator for object attribute")
 var ArrayPrefix = flag.String("array-prefix", "", "Prefix for array expression")
 var ArraySuffix = flag.String("array-suffix", "[]", "Suffix for array expression")
-var TypeSeparator = flag.String("type-separator", "$", "Separator for type expression")
+var TypeSeparator = flag.String("type-separator", "\t", "Separator for type expression")
 
 func newSummarizer() *summarizejson.Summarizer {
 	s := &summarizejson.Summarizer{
