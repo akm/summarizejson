@@ -1,4 +1,4 @@
-default: setup test
+default: setup test build
 
 .PHONY: setup
 setup:
