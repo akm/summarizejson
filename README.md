@@ -187,3 +187,11 @@ PATH	TYPE	COUNT
 (ROOT).type	string	1
 ./summarizejson citylots.json  13.54s user 0.59s system 120% cpu 11.683 total
 ```
+
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/akm/summarizejson.
+This project is intended to be a safe, welcoming space for collaboration, and contributors are
+expected to adhere to the [Contributor Covenant](http://contributor-covenant.org/) code of conduct.
+
+## License
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
