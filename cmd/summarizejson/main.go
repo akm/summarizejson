@@ -19,6 +19,17 @@ var ArrayPrefix = flag.String("array-prefix", "", "Prefix for array expression")
 var ArraySuffix = flag.String("array-suffix", "[]", "Suffix for array expression")
 var TypeSeparator = flag.String("type-separator", "\t", "Separator for type expression")
 
+func init() {
+	flag.Usage = func() {
+		out := os.Stderr
+		fmt.Fprintf(out, "Usage of %s:\n", os.Args[0])
+		fmt.Fprintf(out, "  $ %s [options] file1[, file2, ....]\n", os.Args[0])
+		fmt.Fprintf(out, "\noptions:\n")
+
+		flag.PrintDefaults()
+	}
+}
+
 func newSummarizer() *summarizejson.Summarizer {
 	s := &summarizejson.Summarizer{
 		Result: map[string]int{},
