@@ -188,6 +188,16 @@ PATH	TYPE	COUNT
 ./summarizejson citylots.json  13.54s user 0.59s system 120% cpu 11.683 total
 ```
 
+## Run test
+
+```
+go get github.com/stretchr/testify
+```
+
+```
+go test .
+```
+
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/akm/summarizejson.
 This project is intended to be a safe, welcoming space for collaboration, and contributors are
