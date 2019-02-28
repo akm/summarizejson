@@ -96,8 +96,8 @@ PATH	TYPE	COUNT
 ...
 ```
 
-This file includes lots of ID used as attribute key.
-So you can summarize dynamic attribute names with `-key-pattern` and `-key-replace` like this:
+This file includes lots of numeric ID used as attribute name.
+You can summarize dynamic attribute names with `-key-pattern` and `-key-replace` like this:
 
 ```
 $ summarizejson -key-pattern='\A\d+\z' -key-replace='{ID}' citm_catalog.json
@@ -156,6 +156,9 @@ PATH	TYPE	COUNT
 (ROOT).venueNames	map[string]interface {}	1
 (ROOT).venueNames.PLEYEL_PLEYEL	string	1
 ```
+
+Passing a regular expreesion `\A\d+\z` to `-key-pattern`.
+See https://github.com/google/re2/wiki/Syntax for more detail about regular expression.
 
 #### 180 MB JSON file
 
