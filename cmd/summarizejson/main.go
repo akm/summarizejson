@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
+	"sort"
 
 	"github.com/akm/summarizejson"
 )
@@ -94,7 +95,16 @@ func main() {
 			fmt.Fprintf(os.Stdout, "%s%s%s\t%s\n", "PATH", s.TypeSeparator, "TYPE", "COUNT")
 		}
 
-		for key, cnt := range s.Result {
+		keys := make([]string, len(s.Result))
+		i := 0
+		for k, _ := range s.Result {
+			keys[i] = k
+			i += 1
+		}
+		sort.Strings(keys)
+
+		for _, key := range keys {
+			cnt := s.Result[key]
 			fmt.Fprintf(os.Stdout, "%s\t%d\n", key, cnt)
 		}
 	}
