@@ -97,7 +97,7 @@ func main() {
 
 		keys := make([]string, len(s.Result))
 		i := 0
-		for k, _ := range s.Result {
+		for k := range s.Result {
 			keys[i] = k
 			i += 1
 		}
