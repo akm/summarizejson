@@ -13,6 +13,11 @@ import (
 
 var KeyPattern = flag.String("keypattern", "", "Pattern for collapsing keys")
 var KeyReplace = flag.String("keyreplace", "(key)", "Replacement for collapsed keys")
+var RootExp = flag.String("root-exp", "", "Expression for root object")
+var PathSeparator = flag.String("path-separator", ".", "Separator for object attribute")
+var ArrayPrefix = flag.String("array-prefix", "", "Prefix for array expression")
+var ArraySuffix = flag.String("array-suffix", "[]", "Suffix for array expression")
+var TypeSeparator = flag.String("type-separator", "$", "Separator for type expression")
 
 func newSummarizer() *summarizejson.Summarizer {
 	s := &summarizejson.Summarizer{
@@ -32,6 +37,23 @@ func newSummarizer() *summarizejson.Summarizer {
 			Replace: *KeyReplace,
 		}
 	}
+
+	if RootExp != nil {
+		s.RootExpression = *RootExp
+	}
+	if PathSeparator != nil {
+		s.PathSeparator = *PathSeparator
+	}
+	if ArrayPrefix != nil {
+		s.ArrayPrefix = *ArrayPrefix
+	}
+	if ArraySuffix != nil {
+		s.ArraySuffix = *ArraySuffix
+	}
+	if TypeSeparator != nil {
+		s.TypeSeparator = *TypeSeparator
+	}
+
 	return s
 }
 
