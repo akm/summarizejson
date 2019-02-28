@@ -5,6 +5,16 @@ import (
 	"regexp"
 )
 
+type Replacer interface {
+	Do(string) string
+}
+
+type replacerNullObject struct{}
+
+func (r *replacerNullObject) Do(s string) string {
+	return s
+}
+
 type Replacement struct {
 	Pattern *regexp.Regexp
 	Replace string
@@ -16,7 +26,7 @@ func (r *Replacement) Do(s string) string {
 
 type Summarizer struct {
 	Result         map[string]int
-	KeyCollapse    *Replacement
+	KeyCollapse    Replacer
 	RootExpression string
 	PathSeparator  string
 	ArrayPrefix    string
@@ -25,6 +35,9 @@ type Summarizer struct {
 }
 
 func (s *Summarizer) Fulfill() {
+	if s.KeyCollapse == nil {
+		s.KeyCollapse = &replacerNullObject{}
+	}
 	// if s.RootExpression == "" {
 	// 	s.RootExpression = ""
 	// }
@@ -52,12 +65,7 @@ func (s *Summarizer) Walk(path string, obj interface{}) {
 	switch val := obj.(type) {
 	case map[string]interface{}:
 		for k, v := range val {
-			var newKey string
-			if s.KeyCollapse != nil {
-				newKey = s.KeyCollapse.Do(k)
-			} else {
-				newKey = k
-			}
+			newKey := s.KeyCollapse.Do(k)
 			s.Walk(fmt.Sprintf("%s%s%s", path, s.PathSeparator, newKey), v)
 		}
 	case []interface{}:
