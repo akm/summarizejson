@@ -15,16 +15,40 @@ func (r *Replacement) Do(s string) string {
 }
 
 type Summarizer struct {
-	Result      map[string]int
-	KeyCollapse *Replacement
+	Result         map[string]int
+	KeyCollapse    *Replacement
+	RootExpression string
+	PathSeparator  string
+	ArrayPrefix    string
+	ArraySuffix    string
+	TypeSeparator  string
+}
+
+func (s *Summarizer) Fulfill() {
+	// if s.RootExpression == "" {
+	// 	s.RootExpression = ""
+	// }
+	if s.PathSeparator == "" {
+		s.PathSeparator = "."
+	}
+	// if s.ArrayPrefix == "" {
+	// 	s.ArrayPrefix = ""
+	// }
+	if s.ArraySuffix == "" {
+		s.ArraySuffix = "[]"
+	}
+	if s.TypeSeparator == "" {
+		s.TypeSeparator = "$"
+	}
 }
 
 func (s *Summarizer) Load(obj interface{}) {
-	s.Walk("", obj)
+	s.Fulfill()
+	s.Walk(s.RootExpression, obj)
 }
 
 func (s *Summarizer) Walk(path string, obj interface{}) {
-	s.Result[fmt.Sprintf("%s$%T", path, obj)] += 1
+	s.Result[fmt.Sprintf("%s%s%T", path, s.TypeSeparator, obj)] += 1
 	switch val := obj.(type) {
 	case map[string]interface{}:
 		for k, v := range val {
@@ -34,10 +58,10 @@ func (s *Summarizer) Walk(path string, obj interface{}) {
 			} else {
 				newKey = k
 			}
-			s.Walk(fmt.Sprintf("%s.%s", path, newKey), v)
+			s.Walk(fmt.Sprintf("%s%s%s", path, s.PathSeparator, newKey), v)
 		}
 	case []interface{}:
-		key := fmt.Sprintf("%s[]", path)
+		key := fmt.Sprintf("%s%s%s", s.ArrayPrefix, path, s.ArraySuffix)
 		for _, v := range val {
 			s.Walk(key, v)
 		}
