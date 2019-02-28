@@ -53,7 +53,7 @@ type Summarizer struct {
 	TypeSeparator string
 }
 
-func (s *Summarizer) Fulfill() {
+func (s *Summarizer) fulfill() {
 	if s.KeyCollapse == nil {
 		s.KeyCollapse = &replacerNullObject{}
 	}
@@ -76,23 +76,23 @@ func (s *Summarizer) Fulfill() {
 
 // Run returns the result of count-up
 func (s *Summarizer) Run(obj interface{}) map[string]int {
-	s.Fulfill()
-	s.Walk(s.RootExpression, obj)
+	s.fulfill()
+	s.walk(s.RootExpression, obj)
 	return s.Result
 }
 
-func (s *Summarizer) Walk(path string, obj interface{}) {
+func (s *Summarizer) walk(path string, obj interface{}) {
 	s.Result[fmt.Sprintf("%s%s%T", path, s.TypeSeparator, obj)]++
 	switch val := obj.(type) {
 	case map[string]interface{}:
 		for k, v := range val {
 			newKey := s.KeyCollapse.Do(k)
-			s.Walk(fmt.Sprintf("%s%s%s", path, s.PathSeparator, newKey), v)
+			s.walk(fmt.Sprintf("%s%s%s", path, s.PathSeparator, newKey), v)
 		}
 	case []interface{}:
 		key := fmt.Sprintf("%s%s%s", s.ArrayPrefix, path, s.ArraySuffix)
 		for _, v := range val {
-			s.Walk(key, v)
+			s.walk(key, v)
 		}
 	}
 }
