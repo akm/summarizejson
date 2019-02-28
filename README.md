@@ -3,8 +3,10 @@
 Summarize JSON file structure.
 
 ---
-[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](http://godoc.org/github.com/akm/summarizejson)
 [![Build Status](https://travis-ci.org/akm/summarizejson.svg?branch=master)](https://travis-ci.org/akm/summarizejson)
+[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](http://godoc.org/github.com/akm/summarizejson)
+[![Go Report Card](https://goreportcard.com/badge/github.com/akm/summarizejson)](https://goreportcard.com/report/github.com/akm/summarizejson)
+
 
 ## Install
 
