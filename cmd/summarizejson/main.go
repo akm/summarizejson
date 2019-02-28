@@ -89,22 +89,22 @@ func main() {
 			}
 		}
 
-		s.Load(obj)
+		r := s.Run(obj)
 
 		if NoHeader == nil || !(*NoHeader) {
 			fmt.Fprintf(os.Stdout, "%s%s%s\t%s\n", "PATH", s.TypeSeparator, "TYPE", "COUNT")
 		}
 
-		keys := make([]string, len(s.Result))
+		keys := make([]string, len(r))
 		i := 0
-		for k := range s.Result {
+		for k := range r {
 			keys[i] = k
 			i += 1
 		}
 		sort.Strings(keys)
 
 		for _, key := range keys {
-			cnt := s.Result[key]
+			cnt := r[key]
 			fmt.Fprintf(os.Stdout, "%s\t%d\n", key, cnt)
 		}
 	}

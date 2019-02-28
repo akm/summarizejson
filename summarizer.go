@@ -74,10 +74,11 @@ func (s *Summarizer) Fulfill() {
 	}
 }
 
-// Load starts count up
-func (s *Summarizer) Load(obj interface{}) {
+// Run returns the result of count-up
+func (s *Summarizer) Run(obj interface{}) map[string]int {
 	s.Fulfill()
 	s.Walk(s.RootExpression, obj)
+	return s.Result
 }
 
 func (s *Summarizer) Walk(path string, obj interface{}) {

@@ -54,8 +54,7 @@ func NewSummarizer1() *Summarizer {
 
 func TestSummarizerTestData1(t *testing.T) {
 	s := NewSummarizer1()
-	s.Load(TestData1)
-	assert.Equal(t, ExpectedForTestData1, s.Result)
+	assert.Equal(t, ExpectedForTestData1, s.Run(TestData1))
 }
 
 func TestSummarizerTestData1ViaJSON(t *testing.T) {
@@ -69,8 +68,7 @@ func TestSummarizerTestData1ViaJSON(t *testing.T) {
 		var obj interface{}
 		if assert.NoError(t, json.Unmarshal(b, &obj)) {
 			s := NewSummarizer1()
-			s.Load(obj)
-			assert.Equal(t, expected, s.Result)
+			assert.Equal(t, expected, s.Run(obj))
 		}
 	}
 }
