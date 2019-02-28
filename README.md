@@ -2,6 +2,10 @@
 
 Summarize JSON file structure.
 
+---
+[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](http://godoc.org/github.com/akm/summarizejson)
+
+
 ## Install
 
 ```
