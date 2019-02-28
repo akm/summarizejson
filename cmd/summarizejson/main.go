@@ -14,9 +14,7 @@ import (
 var KeyPattern = flag.String("keypattern", "", "Pattern for collapsing keys")
 var KeyReplace = flag.String("keyreplace", "(key)", "Replacement for collapsed keys")
 
-func main() {
-	flag.Parse()
-
+func newSummarizer() *summarizejson.Summarizer {
 	s := &summarizejson.Summarizer{
 		Result: map[string]int{},
 	}
@@ -34,6 +32,13 @@ func main() {
 			Replace: *KeyReplace,
 		}
 	}
+	return s
+}
+
+func main() {
+	flag.Parse()
+
+	s := newSummarizer()
 
 	fmt.Fprintf(os.Stderr, "flag,args %v\n", flag.Args())
 	for _, path := range flag.Args() {
