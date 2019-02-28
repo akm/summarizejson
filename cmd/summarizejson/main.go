@@ -13,8 +13,8 @@ import (
 
 var ArrayPrefix = flag.String("array-prefix", "", "Prefix for array expression")
 var ArraySuffix = flag.String("array-suffix", "[]", "Suffix for array expression")
-var KeyPattern = flag.String("keypattern", "", "Pattern for collapsing keys")
-var KeyReplace = flag.String("keyreplace", "{key}", "Replacement for collapsed keys")
+var KeyPattern = flag.String("key-pattern", "", "Pattern for collapsing keys")
+var KeyReplace = flag.String("key-replace", "{key}", "Replacement for collapsed keys")
 var PathSeparator = flag.String("path-separator", ".", "Separator for object attribute")
 var RootExp = flag.String("root-exp", "(ROOT)", "Expression for root object")
 var TypeSeparator = flag.String("type-separator", "\t", "Separator for type expression")
