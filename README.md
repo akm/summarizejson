@@ -45,7 +45,7 @@ options:
 
 ```
 $ curl -L https://github.com/nlohmann/json/raw/develop/benchmarks/data/jeopardy/jeopardy.json -o jeopardy.json
-summarizejson jeopardy.json
+$ summarizejson jeopardy.json
 PATH	TYPE	COUNT
 (ROOT)	[]interface {}	1
 (ROOT)[]	map[string]interface {}	216930
