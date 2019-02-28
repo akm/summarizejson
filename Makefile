@@ -15,3 +15,7 @@ fmt:
 .PHONY: lint
 lint:
 	golint ./...
+
+.PHONY: build
+build:
+	go build github.com/akm/summarizejson/cmd/summarizejson
