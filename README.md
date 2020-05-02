@@ -17,9 +17,9 @@ go get github.com/akm/summarizejson/cmd/summarizejson
 ## Usage
 
 ```
-$ summarizejson -h
-Usage of ./summarizejson:
-  $ ./summarizejson [options] file1[, file2, ....]
+$ $GOPATH/bin/summarizejson -h
+Usage of $GOPATH/bin/summarizejson:
+  $ $GOPATH/bin/summarizejson [options] file1[, file2, ....]
 
 options:
   -array-prefix string
